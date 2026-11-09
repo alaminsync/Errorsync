@@ -29,12 +29,25 @@ const DEFAULT_RECOMMENDED_QUESTIONS = [
   'What services does Error Sync offer?',
 ];
 
+// Helper to ensure only the first question answer starts with "Aas Salamu Alaikum! I'm Jawad from Error Sync.", later questions talk naturally
+function formatJawadAnswer(rawAnswer: string, isFirstAnswer: boolean): string {
+  let text = rawAnswer.trim();
+  const greetingPattern = /^Aas\s+Salamu\s+Alaikum[!,\.]?\s*(?:I'm\s+(?:\*\*)?Jawad(?:\*\*)?\s+from\s+(?:\*\*)?Error\s+Sync(?:\*\*)?[!,\.]?\s*)?/i;
+
+  if (isFirstAnswer) {
+    text = text.replace(greetingPattern, '').trim();
+    return `Aas Salamu Alaikum! I'm Jawad from Error Sync.\n\n${text}`;
+  } else {
+    return text.replace(greetingPattern, '').trim();
+  }
+}
+
 // Fallback intelligent answer engine based on authoritative agency data
 function generateLocalJawadAnswer(query: string): string {
   const q = query.toLowerCase();
 
   if (q.includes('price') || q.includes('cost') || q.includes('how much') || q.includes('rate') || q.includes('pricing')) {
-    return `Aas Salamu Alaikum! Every project at Error Sync is tailored to your commercial targets with clear, transparent pricing:\n\n` +
+    return `Every project at Error Sync is tailored to your commercial targets with clear, transparent pricing:\n\n` +
       `• **Custom Shopify & High-Converting Websites**: $2,500 – $12,000 (bespoke Liquid/React, speed optimization & checkout CRO).\n` +
       `• **Bespoke Software & SaaS Platforms**: $6,000+ (custom React/Node architectures, client portals & ERP sync).\n` +
       `• **Monthly Growth Retainers**: From $1,200/month (SEO/AEO/GEO, Google Search Ads & Meta Ads).\n\n` +
@@ -44,7 +57,7 @@ function generateLocalJawadAnswer(query: string): string {
   }
 
   if (q.includes('service') || q.includes('what do you do') || q.includes('offer') || q.includes('help with')) {
-    return `Aas Salamu Alaikum! At Error Sync, we design, engineer, and scale high-growth digital businesses under one roof:\n\n` +
+    return `At Error Sync, we design, engineer, and scale high-growth digital businesses under one roof:\n\n` +
       `1. **Web Design & Development**: Sub-second page speeds, custom React, WordPress, or bespoke code.\n` +
       `2. **Shopify Store Design & Development**: Bespoke Liquid 2.0 themes, Shopify Plus, checkout CRO.\n` +
       `3. **Custom Software Solutions**: Web apps, client/partner portals, internal systems & ERP.\n` +
@@ -59,7 +72,7 @@ function generateLocalJawadAnswer(query: string): string {
   }
 
   if (q.includes('magic city') || q.includes('sneaker') || q.includes('energy') || q.includes('case') || q.includes('portfolio') || q.includes('result')) {
-    return `Aas Salamu Alaikum! Here are highlights from our verified client case studies:\n\n` +
+    return `Here are highlights from our verified client case studies:\n\n` +
       `• **Magic City** (Tunisia): Rebuilt their custom Shopify store and scaled Meta Ads. Daily orders leaped from 6/day to **60–70 orders/day at peak** (+340% conversion rate, 4.8x ROAS).\n` +
       `• **Custom Sneakers** (Switzerland): Bespoke luxury e-commerce with 3D product preview. Sales rose **+40% in month one**, reaching 26 daily orders at peak.\n` +
       `• **Energy Solutions** (UK): Enterprise portal with Google Ads & ERP sync. Inbound leads **doubled (+200%)** with a 99.4% contract renewal rate and -46% CPA.\n\n` +
@@ -69,7 +82,7 @@ function generateLocalJawadAnswer(query: string): string {
   }
 
   if (q.includes('aeo') || q.includes('geo') || q.includes('seo') || q.includes('ai search') || q.includes('visibility')) {
-    return `Aas Salamu Alaikum! Search discovery has evolved into three critical layers:\n\n` +
+    return `Search discovery has evolved into three critical layers:\n\n` +
       `• **SEO (Search Engine Optimization)**: Technical speed, crawlability, and Google keyword ranking.\n` +
       `• **AEO (Answer Engine Optimization)**: Structuring schema and knowledge so search engines pull your brand into instant answers.\n` +
       `• **GEO (Generative Engine Optimization)**: Building entity signals and knowledge graphs so AI assistants like **ChatGPT, Perplexity, and Gemini** cite your brand when users ask for recommendations.\n\n` +
@@ -79,7 +92,7 @@ function generateLocalJawadAnswer(query: string): string {
   }
 
   if (q.includes('time') || q.includes('how long') || q.includes('duration') || q.includes('schedule')) {
-    return `Aas Salamu Alaikum! Our standard project timelines are staged and milestone-driven:\n\n` +
+    return `Our standard project timelines are staged and milestone-driven:\n\n` +
       `• **Custom Shopify & Website Builds**: Typically **3 to 6 weeks** from initial discovery wireframes to live launch.\n` +
       `• **Complex Web Platforms & Software**: Typically **6 to 12 weeks** with bi-weekly demo sprints.\n` +
       `• **Growth Retainers (Ads & SEO)**: Onboarding takes 3–5 business days, active campaigns launch in Week 2.\n\n` +
@@ -88,7 +101,7 @@ function generateLocalJawadAnswer(query: string): string {
   }
 
   if (q.includes('where') || q.includes('location') || q.includes('office') || q.includes('contact') || q.includes('phone') || q.includes('whatsapp') || q.includes('start')) {
-    return `Aas Salamu Alaikum! Error Sync operates across two main hubs and serves clients globally:\n\n` +
+    return `Error Sync operates across two main hubs and serves clients globally:\n\n` +
       `• **Bangladesh HQ**: 3rd Floor, Error Sync HQ, Chawkbazar-4202, Chittagong, Bangladesh\n` +
       `• **USA Office**: 691 Irolo St, Los Angeles, CA 90005, USA\n` +
       `• **WhatsApp / Direct Line**: +880 1852 170810 / +1 (332) 281-2151\n` +
@@ -98,12 +111,12 @@ function generateLocalJawadAnswer(query: string): string {
   }
 
   if (q.includes('who are you') || q.includes('jawad') || q.includes('name')) {
-    return `Aas Salamu Alaikum! I'm **Jawad**, lead digital strategist and AI specialist at Error Sync. Our multidisciplinary team of 13 engineers, designers, and media buyers has spent over 6 years building high-performing websites, Shopify stores, and growth engines.\n\n` +
+    return `I'm **Jawad**, lead digital strategist and AI specialist at Error Sync. Our multidisciplinary team of 13 engineers, designers, and media buyers has spent over 6 years building high-performing websites, Shopify stores, and growth engines.\n\n` +
       `I'd love to speak with you directly on a call or via WhatsApp (**+880 1852 170810**).\n\n` +
       `Would you like to schedule a 1-on-1 meeting with me? Just let me know your **Name**, **Email**, and **Preferred Date/Time**!`;
   }
 
-  return `Aas Salamu Alaikum! Error Sync designs, engineers, and scales high-performance digital businesses—from bespoke Shopify stores and custom software to SEO (including AEO/GEO), Google Ads, and Meta Ads.\n\n` +
+  return `Error Sync designs, engineers, and scales high-performance digital businesses—from bespoke Shopify stores and custom software to SEO (including AEO/GEO), Google Ads, and Meta Ads.\n\n` +
     `Every project begins with your specific goals rather than a generic package. To see what makes the most sense for your brand, having a quick direct discussion on a call or WhatsApp is always best.\n\n` +
     `You can reach me directly on **WhatsApp at +880 1852 170810** (or US direct line +1 332-281-2151).\n\n` +
     `Would you like to schedule a meeting with me (Jawad)? If interested, simply share your **Name**, **Email**, and **Preferred Date/Time**!`;
@@ -141,7 +154,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onOpenProposal }) => {
         {
           id: 'welcome-1',
           sender: 'jawad',
-          text: `Aas Salamu Alaikum! I'm **Jawad** from **Error Sync**. 👋\n\nI can answer anything about our custom web design, Shopify stores, custom software, SEO & AI search visibility (AEO/GEO), or paid ads.\n\nWhat can I help you grow today?`,
+          text: `Aas Salamu Alaikum! I'm **Jawad** from **Error Sync**.\n\nWhat can I help you grow today?`,
           timestamp: timeStr,
         },
       ]);
@@ -270,13 +283,18 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onOpenProposal }) => {
         body: JSON.stringify({ message: query, history }),
       });
 
+      // Check if this is the first answered question in the conversation
+      const priorAnswers = messages.filter((m) => m.sender === 'jawad' && !m.id.startsWith('welcome-'));
+      const isFirstAnswer = priorAnswers.length === 0;
+
       if (res.ok) {
         const data = await res.json();
         if (data.reply) {
+          const formattedReply = formatJawadAnswer(data.reply, isFirstAnswer);
           const jawadMsg: ChatMessage = {
             id: `jawad-${Date.now()}`,
             sender: 'jawad',
-            text: data.reply,
+            text: formattedReply,
             timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           };
           setMessages((prev) => [...prev, jawadMsg]);
@@ -285,7 +303,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onOpenProposal }) => {
         }
       }
       // If endpoint returned fallback or 503/error, use local intelligent answers
-      const localReply = generateLocalJawadAnswer(query);
+      const localReply = formatJawadAnswer(generateLocalJawadAnswer(query), isFirstAnswer);
       const jawadMsg: ChatMessage = {
         id: `jawad-${Date.now()}`,
         sender: 'jawad',
@@ -294,7 +312,9 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onOpenProposal }) => {
       };
       setMessages((prev) => [...prev, jawadMsg]);
     } catch {
-      const localReply = generateLocalJawadAnswer(query);
+      const priorAnswers = messages.filter((m) => m.sender === 'jawad' && !m.id.startsWith('welcome-'));
+      const isFirstAnswer = priorAnswers.length === 0;
+      const localReply = formatJawadAnswer(generateLocalJawadAnswer(query), isFirstAnswer);
       const jawadMsg: ChatMessage = {
         id: `jawad-${Date.now()}`,
         sender: 'jawad',
@@ -368,7 +388,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onOpenProposal }) => {
       {
         id: `welcome-${Date.now()}`,
         sender: 'jawad',
-        text: `Aas Salamu Alaikum! I'm **Jawad** from **Error Sync**. 👋\n\nHow can I help you today? Click the question below or type your inquiry!`,
+        text: `Aas Salamu Alaikum! I'm **Jawad** from **Error Sync**.\n\nWhat can I help you grow today?`,
         timestamp: timeStr,
       },
     ]);

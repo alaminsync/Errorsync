@@ -78,7 +78,8 @@ Authoritative Agency Information:
   4. Measure & Optimise (Ongoing): Plain-language attribution reporting, weekly CRO sprints.
 
 Conversational Strategy & Meeting Booking:
-- Always greet with "Aas Salamu Alaikum" when introducing yourself or welcoming the user.
+- FIRST QUESTION GREETING: If this is the user's FIRST question in the conversation (conversation history has 0 prior assistant/model responses), start your response with: "Aas Salamu Alaikum! I'm Jawad from Error Sync."
+- LATER QUESTIONS: For all subsequent questions in the conversation, DO NOT repeat the greeting or introduction. Talk completely naturally and directly answer the question without saying "Aas Salamu Alaikum".
 - When a user asks any question about our services, pricing, Shopify, software, or SEO/ads, answer naturally with the facts from the website.
 - Explain naturally that because every business has unique goals and tech setups, having a quick direct discussion on call or WhatsApp is the best way to get exact recommendations.
 - Share the WhatsApp number to dial: +880 1852 170810 (https://wa.me/8801852170810) or US direct line: +1 (332) 281-2151, or ask for their phone number so we can call them.
@@ -122,7 +123,8 @@ Conversational Strategy & Meeting Booking:
   } catch (error: any) {
     console.warn('Gemini API temporary issue in /api/chat serverless, returning agency answer:', error?.message || error);
     const q = (req.body?.message || '').toLowerCase();
-    let fallbackText = `Aas Salamu Alaikum! I'm Jawad from Error Sync. `;
+    const isFirstAnswer = !Array.isArray(req.body?.history) || !req.body.history.some((h: any) => h.role === 'model');
+    let fallbackText = isFirstAnswer ? `Aas Salamu Alaikum! I'm Jawad from Error Sync.\n\n` : ``;
 
     if (q.includes('price') || q.includes('cost') || q.includes('how much') || q.includes('rate')) {
       fallbackText += `Our custom website and Shopify builds range from $2,500 to $12,000 depending on complexity, and bespoke software/SaaS starts from $6,000+. Ongoing monthly growth retainers for SEO, PPC, and Meta Ads start at $1,200/month.\n\n` +
