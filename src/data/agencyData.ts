@@ -1,3 +1,7 @@
+import magicCityImg from '../assets/images/case_magic_city_1793799527011.jpg';
+import customSneakersImg from '../assets/images/case_custom_sneakers_1793799527834.jpg';
+import energySolutionsImg from '../assets/images/case_energy_solutions_1793799528764.jpg';
+
 export interface CaseStudy {
   id: string;
   title: string;
@@ -107,7 +111,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Magic City",
     category: "Shopify & Meta Ads",
     location: "Tunisia",
-    image: "/src/assets/images/case_magic_city_1793799527011.jpg",
+    image: magicCityImg,
     alt: "Magic City dark luxury e-commerce store mockup",
     metric: "60-70",
     metricLabel: "From 6 orders a day to 60–70 at peak",
@@ -129,7 +133,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Custom Sneakers",
     category: "Shopify & Meta Ads",
     location: "Switzerland",
-    image: "/src/assets/images/case_custom_sneakers_1793799527834.jpg",
+    image: customSneakersImg,
     alt: "Custom Sneakers high-end streetwear store mockup",
     metric: "16-26",
     metricLabel: "8 to 12 orders a day, 16 to 26 at peak",
@@ -151,7 +155,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: "Energy Solutions",
     category: "Website, SEO, Google Ads & ERP",
     location: "United Kingdom",
-    image: "/src/assets/images/case_energy_solutions_1793799528764.jpg",
+    image: energySolutionsImg,
     alt: "Energy Solutions enterprise B2B clean tech portal",
     metric: "2x",
     metricLabel: "Monthly leads doubled, no missed renewals",
