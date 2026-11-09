@@ -24,11 +24,6 @@ interface ChatMessage {
 
 const DEFAULT_RECOMMENDED_QUESTIONS = [
   'What services does Error Sync offer?',
-  'How much does a custom Shopify store cost?',
-  'What results did you get for Magic City & Custom Sneakers?',
-  'How do SEO, AEO, and GEO work together?',
-  'How long does a website project take?',
-  'Where are your offices and how do we get started?',
 ];
 
 // Fallback intelligent answer engine based on authoritative agency data
@@ -88,7 +83,7 @@ function generateLocalJawadAnswer(query: string): string {
   }
 
   if (q.includes('who are you') || q.includes('jawad') || q.includes('name')) {
-    return `I'm **Jawad**, lead digital strategist and AI specialist at Error Sync. Our team of 13 engineers, designers, and media buyers has spent over 6 years building high-performing websites, Shopify stores, and growth engines. How can I assist your business today?`;
+    return `Aas Salamu Alaikum! I'm **Jawad**, lead digital strategist and AI specialist at Error Sync. Our team of 13 engineers, designers, and media buyers has spent over 6 years building high-performing websites, Shopify stores, and growth engines. How can I assist your business today?`;
   }
 
   return `Thanks for asking! Error Sync is a digital agency specializing in custom web design, Shopify stores, custom software, SEO (including AEO/GEO), Google Ads, and Meta Ads.\n\n` +
@@ -115,7 +110,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onOpenProposal }) => {
         {
           id: 'welcome-1',
           sender: 'jawad',
-          text: `Hi! I'm **Jawad** from **Error Sync**. 👋\n\nI can answer anything about our custom web design, Shopify stores, custom software, SEO & AI search visibility (AEO/GEO), or paid ads.\n\nWhat can I help you grow today?`,
+          text: `Aas Salamu Alaikum! I'm **Jawad** from **Error Sync**. 👋\n\nI can answer anything about our custom web design, Shopify stores, custom software, SEO & AI search visibility (AEO/GEO), or paid ads.\n\nWhat can I help you grow today?`,
           timestamp: timeStr,
         },
       ]);
@@ -206,7 +201,7 @@ export const Chatbot: React.FC<ChatbotProps> = ({ onOpenProposal }) => {
       {
         id: `welcome-${Date.now()}`,
         sender: 'jawad',
-        text: `Hi! I'm **Jawad** from **Error Sync**. 👋\n\nHow can I help you today? Pick a question below or type your inquiry!`,
+        text: `Aas Salamu Alaikum! I'm **Jawad** from **Error Sync**. 👋\n\nHow can I help you today? Click the question below or type your inquiry!`,
         timestamp: timeStr,
       },
     ]);

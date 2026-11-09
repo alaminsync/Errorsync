@@ -134,7 +134,7 @@ Response Guidelines:
       console.warn('Gemini API temporary issue in /api/chat, serving authoritative agency answer:', error?.message || error);
       
       const q = (req.body?.message || '').toLowerCase();
-      let fallbackText = `Hi! I'm Jawad from Error Sync. `;
+      let fallbackText = `Aas Salamu Alaikum! I'm Jawad from Error Sync. `;
 
       if (q.includes('price') || q.includes('cost') || q.includes('how much') || q.includes('rate')) {
         fallbackText += `Our custom website and Shopify builds range from $2,500 to $12,000 depending on complexity, and bespoke software/SaaS starts from $6,000+. Ongoing monthly growth retainers for SEO, PPC, and Meta Ads start at $1,200/month. We tailor every quote with an itemized fixed-price proposal before kickoff!`;
