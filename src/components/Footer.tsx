@@ -223,19 +223,6 @@ export const Footer: React.FC = () => {
           </div>
         </motion.div>
       </footer>
-
-      {/* Floating Bottom Right WhatsApp Brand Pill */}
-      <div className="fixed bottom-6 right-6 z-40">
-        <a
-          href="https://wa.me/8801852170810"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-gradient-to-r from-purple-600 via-violet-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 text-white font-bold text-xs shadow-[0_8px_30px_rgba(168,85,247,0.45)] hover:shadow-[0_10px_35px_rgba(217,70,239,0.7)] hover:scale-105 transition-all cursor-pointer border border-white/25 backdrop-blur-md"
-        >
-          <MessageCircle className="w-4 h-4 fill-white" />
-          <span>Need help?</span>
-        </a>
-      </div>
     </>
   );
 };

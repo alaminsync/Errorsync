@@ -19,6 +19,7 @@ import { CaseStudyModal } from './components/CaseStudyModal';
 import { ServiceModal } from './components/ServiceModal';
 import { AllCasesModal } from './components/AllCasesModal';
 import { AIAuditModal } from './components/AIAuditModal';
+import { Chatbot } from './components/Chatbot';
 import { CaseStudy, ServiceItem } from './data/agencyData';
 
 function AppContent() {
@@ -148,6 +149,9 @@ function AppContent() {
         onClose={() => setIsAIAuditOpen(false)}
         onRequestProposal={() => handleOpenProposal('Free AI Visibility Audit')}
       />
+
+      {/* Floating Need Help Button & Live Chatbot "Jawad" on the Right Side */}
+      <Chatbot onOpenProposal={() => handleOpenProposal()} />
     </div>
   );
 }
