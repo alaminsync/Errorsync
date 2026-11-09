@@ -98,6 +98,17 @@ const CaseStudyCard: React.FC<CaseCardProps> = ({ study, index, onClick }) => {
           alt={study.alt}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
           loading="lazy"
+          onError={(e) => {
+            const fallback =
+              study.id === 'magic-city'
+                ? '/images/case_magic_city_1793799527011.jpg'
+                : study.id === 'custom-sneakers'
+                ? '/images/case_custom_sneakers_1793799527834.jpg'
+                : '/images/case_energy_solutions_1793799528764.jpg';
+            if (!e.currentTarget.src.endsWith(fallback)) {
+              e.currentTarget.src = fallback;
+            }
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 dark:from-[#0B0716]/90 via-transparent to-transparent opacity-75" />
 

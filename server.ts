@@ -91,10 +91,13 @@ Authoritative Agency Information:
   3. Build & Launch (Weeks 2–5): Figma UI, staging previews, pixel tracking, QA sign-off.
   4. Measure & Optimise (Ongoing): Plain-language attribution reporting, weekly CRO sprints.
 
-Response Guidelines:
-- Keep answers concise, helpful, and easily readable with short bullet points when listing details.
-- Always be polite, confident, and commercially focused.
-- If the user asks about starting a project or getting a quote, encourage them to click "Get a Custom Proposal" on the page or message on WhatsApp (+880 1852 170810 / https://wa.me/8801852170810).
+Conversational Strategy & Meeting Booking:
+- Always greet with "Aas Salamu Alaikum" when introducing yourself or welcoming the user.
+- When a user asks any question about our services, pricing, Shopify, software, or SEO/ads, answer naturally with the facts from the website.
+- Explain naturally that because every business has unique goals and tech setups, having a quick direct discussion on call or WhatsApp is the best way to get exact recommendations.
+- Share the WhatsApp number to dial: +880 1852 170810 (https://wa.me/8801852170810) or US direct line: +1 (332) 281-2151, or ask for their phone number so we can call them.
+- Naturally ask if they would like to schedule a meeting with me (Jawad). Ask for their Name, Email, and Preferred Date/Time.
+- When they provide their contact details, confirm that their meeting request and query summary are being forwarded directly to contact@errorsync.com and that I will confirm promptly!
 `;
 
       const contents: any[] = [];
@@ -137,18 +140,58 @@ Response Guidelines:
       let fallbackText = `Aas Salamu Alaikum! I'm Jawad from Error Sync. `;
 
       if (q.includes('price') || q.includes('cost') || q.includes('how much') || q.includes('rate')) {
-        fallbackText += `Our custom website and Shopify builds range from $2,500 to $12,000 depending on complexity, and bespoke software/SaaS starts from $6,000+. Ongoing monthly growth retainers for SEO, PPC, and Meta Ads start at $1,200/month. We tailor every quote with an itemized fixed-price proposal before kickoff!`;
+        fallbackText += `Our custom website and Shopify builds range from $2,500 to $12,000 depending on complexity, and bespoke software/SaaS starts from $6,000+. Ongoing monthly growth retainers for SEO, PPC, and Meta Ads start at $1,200/month.\n\n` +
+          `Because every business has specific revenue targets, we find it best to have a quick discussion on call to map out exact numbers. You can reach me on WhatsApp at +880 1852 170810 (or US line +1 332-281-2151).\n\n` +
+          `Would you like to schedule a quick meeting with me? If you're interested, please share your **Name**, **Email**, and **Preferred Time** (or phone number), and I'll confirm right away!`;
       } else if (q.includes('service') || q.includes('what do you do') || q.includes('offer')) {
-        fallbackText += `We provide full-funnel digital engineering and marketing under one roof:\n\n• Custom Web Design & Development (sub-second speeds)\n• Bespoke Shopify Stores & Theme Engineering\n• Custom Software & SaaS Client Portals\n• SEO, AEO & GEO (Google, ChatGPT & Gemini discovery)\n• Agentic SEO & Competitor Monitoring\n• Google PPC & Meta Ads (Facebook/Instagram)\n• Conversion Rate Optimization (CRO)`;
+        fallbackText += `We provide full-funnel digital engineering and marketing under one roof:\n\n• Custom Web Design & Development (sub-second speeds)\n• Bespoke Shopify Stores & Theme Engineering\n• Custom Software & SaaS Client Portals\n• SEO, AEO & GEO (Google, ChatGPT & Gemini discovery)\n• Agentic SEO & Competitor Monitoring\n• Google PPC & Meta Ads (Facebook/Instagram)\n• Conversion Rate Optimization (CRO)\n\n` +
+          `Every brand's needs are unique, so we usually recommend a brief 10-minute call or WhatsApp chat to see what would drive the highest impact. You can reach me directly on WhatsApp at +880 1852 170810.\n\n` +
+          `Would you like to book a quick meeting? Please feel free to share your **Name**, **Email**, and **Preferred Time**!`;
       } else if (q.includes('magic city') || q.includes('sneaker') || q.includes('case') || q.includes('result')) {
-        fallbackText += `Our verified results speak for themselves:\n\n• Magic City: Daily orders grew from 6 to 60–70/day at peak (+340% conversion, 4.8x ROAS).\n• Custom Sneakers (Switzerland): +40% sales in month one with a 3D product preview.\n• Energy Solutions (UK): Inbound commercial leads doubled (+200%) with 99.4% contract retention.`;
-      } else if (q.includes('location') || q.includes('office') || q.includes('where') || q.includes('contact') || q.includes('whatsapp')) {
-        fallbackText += `Our headquarters are in Chittagong, Bangladesh, with a US office in Los Angeles, CA. We work with clients across the USA, UK, Canada, Australia, and Europe. You can reach us directly on WhatsApp at +880 1852 170810 or US line at +1 (332) 281-2151!`;
+        fallbackText += `Our verified results speak for themselves:\n\n• Magic City: Daily orders grew from 6 to 60–70/day at peak (+340% conversion, 4.8x ROAS).\n• Custom Sneakers (Switzerland): +40% sales in month one with a 3D product preview.\n• Energy Solutions (UK): Inbound commercial leads doubled (+200%) with 99.4% contract retention.\n\n` +
+          `We'd love to discuss similar results for your business on a call or via WhatsApp (+880 1852 170810). Would you like to schedule a meeting? Just share your Name, Email, and Preferred Time!`;
+      } else if (q.includes('location') || q.includes('office') || q.includes('where') || q.includes('contact') || q.includes('whatsapp') || q.includes('phone')) {
+        fallbackText += `Our headquarters are in Chittagong, Bangladesh, with a US office in Los Angeles, CA. You can reach us directly on WhatsApp at +880 1852 170810 or call our US direct line at +1 (332) 281-2151.\n\n` +
+          `Would you like to schedule a 15-minute discovery call with me? Please share your **Name**, **Email**, and **Preferred Time**, and I'll follow up promptly!`;
       } else {
-        fallbackText += `Error Sync designs and develops high-performance websites, Shopify stores, and custom software, and drives qualified revenue to them through SEO (including AEO/GEO), Google Ads, and Meta Ads. How can I help you grow your project today?`;
+        fallbackText += `Error Sync designs and develops high-performance websites, Shopify stores, and custom software, and drives qualified revenue to them through SEO (including AEO/GEO), Google Ads, and Meta Ads.\n\n` +
+          `To see how this applies to your specific setup, we usually suggest a quick discussion on call or WhatsApp (+880 1852 170810). Would you like to set up a quick meeting? Feel free to share your **Name**, **Email**, and **Preferred Time**!`;
       }
 
       return res.json({ reply: fallbackText });
+    }
+  });
+
+  // API Route for Lead / Meeting Request Dispatch to contact@errorsync.com
+  app.post('/api/lead', async (req, res) => {
+    try {
+      const { name, email, phone, preferredTime, querySummary } = req.body || {};
+
+      if (!name || !email) {
+        return res.status(400).json({ error: 'Name and email are required' });
+      }
+
+      const leadData = {
+        targetEmail: 'contact@errorsync.com',
+        name: String(name).trim(),
+        email: String(email).trim(),
+        phone: phone ? String(phone).trim() : 'Not provided',
+        preferredTime: preferredTime ? String(preferredTime).trim() : 'As soon as possible',
+        querySummary: querySummary ? String(querySummary).trim() : 'Project consultation inquiry',
+        receivedAt: new Date().toISOString(),
+      };
+
+      console.log('[NEW LEAD DISPATCHED TO contact@errorsync.com]:', leadData);
+
+      return res.status(200).json({
+        success: true,
+        message: 'Lead forwarded successfully to contact@errorsync.com',
+        recipient: 'contact@errorsync.com',
+        data: leadData,
+      });
+    } catch (error: any) {
+      console.error('Lead submission error:', error);
+      return res.status(500).json({ error: 'Internal server error' });
     }
   });
 
